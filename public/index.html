@@ -1,0 +1,138 @@
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="scotchTodo">
+<head>
+	<!-- META -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+	<title>Node/Angular Todo App</title>
+
+	<!-- SCROLLS -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		/*html 					{ overflow-y:scroll; }*/
+		body 					{ padding-top:50px; }
+		#todo-list 				{ margin-bottom:30px; }
+		#todo-form 	 			{ margin-bottom:50px; }
+	</style>
+
+	<!-- SPELLS -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script><!-- load angular -->
+
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
+
+</head>
+<!-- SET THE CONTROLLER -->
+<body ng-controller="mainController">
+	<div class="container">
+
+		<!-- HEADER AND TODO COUNT -->
+		<div class="jumbotron text-center">
+			<h1>Music JavaScript <span class="label label-info">{{ todos.length }}</span></h1>
+		</div>
+
+		<!-- TODO LIST -->
+		<div id="todo-list" class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+
+				
+
+				<!-- LOOP OVER THE TODOS IN $scope.todos -->
+				<div class="checkbox" ng-repeat="todo in todos">
+					<label>
+						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+					</label>
+				</div>
+
+				<p class="text-center" ng-show="loading">
+					<span class="fa fa-spinner fa-spin fa-3x"></span>
+				</p>
+
+			</div>
+		</div>
+
+		<!-- FORM TO CREATE TODOS -->
+		<div id="todo-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>
+					<div class="form-group">
+
+						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+						<input type="text" class="form-control input-lg text-center" placeholder="Type any word or social phrase for lyrical metadata..." ng-model="formData.text">
+					</div>
+
+					<!-- createToDo() WILL CREATE NEW TODOS -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+				</form>
+			</div>
+		</div>
+
+
+<!-- Expanding-Text-Control -->
+<style>
+body {
+  background:#43434B;
+  padding-top:100px;
+}
+textarea {
+  height:300px;
+  /*max-width:300px;*/
+  color:#999;
+  font-weight:400;
+  font-size:30px;
+  font-family:'Ubuntu', Helvetica, Arial, sans-serif;
+  width:100%;
+  background:#fff;
+  border-radius:4px;
+  line-height:2em;
+  border:none;
+  box-shadow:0px 0px 5px 1px rgba(0,0,0,0.1);
+  padding:40px;
+/*  -webkit-transition: height 1s ease;
+-moz-transition: height 1s ease;
+-ms-transition: height 1s ease;
+-o-transition: height 1s ease;
+transition: height 1s ease;*/
+}
+
+* {
+  -webkit-font-smoothing:antialiased !important;
+}
+
+</style>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400' rel='stylesheet' type='text/css'>
+<script src="js/controllers/expandingTextCtrl.js"></script> <!-- load up our controller -->
+	<div ng-controller="AppCtrl" style="float:left; width:700px;">
+		<textarea id="TextArea" ng-model="loremIpsum" ng-keyup="autoExpand($event)" placeholder="LyricalJS">
+		</textarea>
+	</div>
+
+	<div ng-controller="AppCtrl" style="float:right; width:400px;">
+		<textarea id="TextArea" ng-model="loremIpsum" ng-keyup="autoExpand($event)" placeholder="MetaLyrical">
+		</textarea>
+	</div>
+
+<div style="clear:left;">
+<!--End Expanding-Text -->
+
+	<br>
+	<br>
+	<hr>
+	<br>
+	<br>
+
+		<div class="text-center text-muted">
+			<p>A demo by <a href="http://adaptivepatterns.net">adaptivepattern</a>.</p>
+			<p>Read the <a href="http://adaptivepatterns.net">blog</a>.</p>
+		</div>
+
+</div>
+	</div>
+
+</body>
+</html>
